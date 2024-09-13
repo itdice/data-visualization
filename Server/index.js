@@ -11,6 +11,7 @@ const cors = require("cors");
 app.use(cors());
 
 const morgan = require("morgan");
+const res = require("express/lib/response");
 app.use(morgan("dev"));
 
 app.use(express.json());
@@ -29,6 +30,10 @@ app.get("/", async (req, res) => {
 
 app.post("/data", async (req, res) => {
     const { startDate, endDate, timeUnit, device, gender, ages, keywordGroups } = req.body;
+
+    if (Object.keys(req.body).length === 0 && req.body.constructor === Object) {
+        return res.status(400).json({ error: "Empty data" });
+    }
 
     try {
         const request_body = {
