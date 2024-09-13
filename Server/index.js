@@ -31,6 +31,8 @@ app.get("/", async (req, res) => {
 app.post("/data", async (req, res) => {
     const { startDate, endDate, timeUnit, device, gender, ages, keywordGroups } = req.body;
 
+    console.log(req.body);
+
     if (Object.keys(req.body).length === 0 && req.body.constructor === Object) {
         return res.status(400).json({ error: "Empty data" });
     }
@@ -42,9 +44,12 @@ app.post("/data", async (req, res) => {
             timeUnit: timeUnit,
             device: device === "all" ? "" : device,
             gender: gender === "all" ? "" : gender,
-            ages: ages === "all" ? "" : ages,
+            ages: ages === "all" ? [] : [ ages ],
             keywordGroups: keywordGroups
         };
+
+        console.log(request_body);
+
         const url = "https://openapi.naver.com/v1/datalab/search";
         const headers = {
             "Content-Type": "application/json",

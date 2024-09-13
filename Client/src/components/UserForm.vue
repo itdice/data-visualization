@@ -46,7 +46,7 @@ async function sendResultToApi() {
     timeUnit: timeUnit.value,
     device: deviceEnvironment.value,
     gender: genderData.value,
-    age: ageData.value,
+    ages: ageData.value,
     keywordGroups: keywordGroups.value,
   };
   console.log(toApiData);
