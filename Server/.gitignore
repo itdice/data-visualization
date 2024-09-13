@@ -1,0 +1,4 @@
+# Webstrom project files
+.idea
+.env
+node_modules
